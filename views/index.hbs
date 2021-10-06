@@ -1,11 +1,12 @@
 <div>
   <h4>Create new data</h4>
-  <a href="/todos/new">Create</a>
+  <a href="./todos/new">Create</a>
 </div>
 <ul>
     {{#each todos}}
       <li>
-        {{this.name}}
+        {{this.name}} 
+        <a href="./todos/{{ this._id }}">Detail</a>
       </li>
     {{/each}}
 </ul>
