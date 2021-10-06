@@ -10,6 +10,7 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const Todo = require('./models/todo')
 const app = express()
 const port = 3000
 
@@ -29,16 +30,34 @@ app.set('view engine', 'hbs')
 // setting static files
 app.use(express.static('public'))
 // setting body-parser
-app.use(express.urlencoded({ extended: true}))
+app.use(express.urlencoded({ extended: true }))
 
 // setting routes
 app.get('/', (req, res) => {
-  // res.send('hello')
-  res.render('index')
+  Todo.find() 
+    .lean()
+    .then(todos => res.render('index', { todos }))
+    .catch(error => console.error(error))
 })
 
+app.get('/todos/new', (Req, res) => {
+  return res.render('new')
+})
+
+app.post('/todos', (req, res) => {
+  const name = req.body.name
+// // Method 1
+  // const todo = new Todo({ name })
+
+  // return todo.save()
+  //   .then(() => res.redirect('/'))
+  //   .catch(error => console.log(error))
+  return Todo.create({ name })
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
 
 // listen on the Express server
 app.listen(port, () => {
-  console.log(`Express app is running on the http://locolhost:${port}`)
+  console.log(`Express app is running on the http://localhost:${port}`)
 })
