@@ -1,11 +1,3 @@
-// step 1: create app.js
-// step 2: npm init -y (check main value in package.json is "app.js")
-// step 3: npm i express express-handlebars
-// step 4: revise package.json => add   "scripts": {  "start": "node app.js", "dev": "nodemon app.js", ...
-// step 5: start writing server related code to init the project
-// step 6: create new DB by Robo3T => install Mongoose by "npm i mongoose" => setting connection in app.js
-
-// include packages and define server related variables
 const express = require('express')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
@@ -84,6 +76,14 @@ app.post('/todos/:id/edit', (req, res) => {
       return todo.save()
     })
     .then(() => res.redirect(`/todos/${id}`))
+    .catch(error => console.log(error))
+})
+
+app.post('/todos/:id/delete', (req, res) => {
+  const id = req.params.id
+  return Todo.findById(id)
+    .then(todo => todo.remove())
+    .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
 
