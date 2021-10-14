@@ -1,17 +1,24 @@
-<div>
-  <h4>Create new data</h4>
-  <a href="./todos/new">Create</a>
-</div>
-<ul>
+<ul class="list-group">
     {{#each todos}}
-      <li>
-        <input type="checkbox" name="isDone" {{#if this.isDone}} checked {{/if}} disabled>
-        {{this.name}} 
-        <a href="./todos/{{ this._id }}">Detail</a>
-        <a href="./todos/{{ this._id }}/edit">Edit</a>
-        <form action="/todos/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
-          <button type="submit">Delete</button>
-        </form>
+      <li class="list-group-item list-group-item-action">
+        <div class="row justify-content-between align-items-center">
+          <div class="col-auto mx-2">
+            <input type="checkbox" name="isDone" class="me-2" {{#if this.isDone}} checked {{/if}} disabled>
+            <h5 style="display:inline;">{{this.name}}</h5>
+          </div>
+          <div class="col-auto">
+            <a href="./todos/{{ this._id }}" class="btn btn-secondary mx-1">Detail</a>
+            <a href="./todos/{{ this._id }}/edit" class="btn btn-info text-light mx-1">Edit</a>
+            <form action="/todos/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
+              <button type="submit" class="btn btn-danger mx-1">Delete</button>
+            </form>
+          </div>
+
+
+
+            
+            
+        </div>
       </li>
     {{/each}}
 </ul>
