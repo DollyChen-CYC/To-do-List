@@ -3,7 +3,7 @@ const router = express.Router()
 
 const Todo = require('../../models/todo.js')
 
-router.get('/todos/new', (Req, res) => {
+router.get('/new', (req, res) => {
   return res.render('new')
 })
 
