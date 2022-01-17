@@ -6,6 +6,7 @@ const methodOverride = require('method-override')
 const app = express()
 const port = 3000
 const routes = require('./routes')
+const usePassport = require('./config/passport')
 
 // connect to mongo DB
 require('./config/mongoose')
@@ -26,6 +27,9 @@ app.use(session({
 app.use(methodOverride('_method'))
 // setting body-parser
 app.use(express.urlencoded({ extended: true }))
+
+// use passport.js
+usePassport(app)
 
 // setting routes
 app.use(routes)
