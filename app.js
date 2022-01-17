@@ -1,4 +1,5 @@
 const express = require('express')
+const session = require('express-session')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
@@ -14,6 +15,13 @@ app.engine('hbs', exphbs ({ defaultLayout: 'main', extname: '.hbs'}))
 app.set('view engine', 'hbs')
 // setting static files
 app.use(express.static('public'))
+
+app.use(session({
+  secret: 'ThisIsMySecret',
+  resave: false,
+  saveUninitialized: true
+}))
+
 // use method-override
 app.use(methodOverride('_method'))
 // setting body-parser
