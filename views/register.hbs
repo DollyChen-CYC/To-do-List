@@ -1,7 +1,8 @@
 <div class="row mt-5">
   <div class="col-md-6 m-auto">
     <div class="card card-body">
-      <h1 class="text-center mt-3">Register</h1>
+      <h1 class="text-center my-3">Register</h1>
+      {{> message }}
       <form action="/users/register" method="POST" class="d-grid gap-3 px-2">
         <div class="form-group">
           <label class="my-1" for="name">Name</label>
@@ -17,7 +18,7 @@
         </div>
         <div class="form-group">
           <label class="my-1" for="confirmPassword">Confirm Password</label>
-          <input type="password" id="confirmPassword" name="confirmPassword" class="form-control"
+          <input type="password" id="confirmPassword" name="passwordCheck" class="form-control"
             placeholder="Confirm Password">
         </div>
         <div class="d-grid">

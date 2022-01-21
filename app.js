@@ -7,6 +7,7 @@ const app = express()
 const port = 3000
 const routes = require('./routes')
 const usePassport = require('./config/passport')
+const flash = require('connect-flash')
 
 // connect to mongo DB
 require('./config/mongoose')
@@ -30,9 +31,12 @@ app.use(express.urlencoded({ extended: true }))
 
 // use passport.js
 usePassport(app)
+app.use(flash())
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated
   res.locals.user = req.user
+  res.locals.success_msg = req.flash('success_msg')
+  res.locals.warning_msg = req.flash('warning_msg')
   next()
 })
 

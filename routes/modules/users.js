@@ -18,15 +18,45 @@ router.get('/register', (req, res) => {
 
 router.post('/register', (req, res) => {
   const { name, email, password, passwordCheck } = req.body
+  const errors = []
+  // form validation
+  if (!name || !email || !password || !passwordCheck) {
+    errors.push({ message: '所有欄位皆為必填！' })
+    return res.render('register', {
+      errors,
+      name,
+      email
+    })
+  }
+  if (!email.includes('@')) {
+    errors.push({ message: '請填寫正確的 email！' })
+  }
+  if (password !== passwordCheck) {
+    errors.push({ message: '密碼與再次確認密碼不相符！' })
+  }
+  if (errors.length) {
+    return res.render('register', {
+      errors,
+      name,
+      email,
+    })
+  }
+
   // check if user already exists in DB
   User.findOne({ email }).then(user => {
     if (user) {
-      console.log('User already exist.')
-      // TODO: toast alert 
-      res.render('register', { name, email })
+      errors.push({ message: '這個 email 已經註冊過了！' })
+      return res.render('register', {
+        errors,
+        name,
+        email,
+      })
     } else {
       User.create({ name, email, password })
-        .then(() => res.redirect('/users/login'))
+        .then(() => {
+          req.flash('success_msg', '你已成功註冊，請登入！')
+          res.redirect('/users/login')
+        })
         .catch(err => console.log('error', err))
     }
   })
@@ -34,6 +64,7 @@ router.post('/register', (req, res) => {
 
 router.get('/logout', (req, res) => {
   req.logout()
+  req.flash('success_msg', '你已經成功登出！')
   res.redirect('/users/login')
 })
 
