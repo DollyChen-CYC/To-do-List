@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 // connect to mongo DB
-mongoose.connect('mongodb://localhost/todo-list')
+mongoose.connect(process.env.MONGODB_URL)
 const db = mongoose.connection
 
 db.on('error', () => {
