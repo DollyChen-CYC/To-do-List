@@ -1,6 +1,8 @@
 # To-do List
 A To-do list App built with [Node.js](https://nodejs.org/en/), [Express.js](https://expressjs.com/), and [MongoDB](https://www.mongodb.com/).
 * Features: Create, reade, edit and delete your todos.
+#### ☞ ☞ Take a look at this [Todo App](https://polar-earth-37392.herokuapp.com/users/login) 
+- Login with dummy account: `user1@example.com` / password: `12345678` 
 
 ## Installation and Execution
 1.  Clone the files to your computer
