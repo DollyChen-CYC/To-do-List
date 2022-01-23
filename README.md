@@ -4,6 +4,8 @@ A To-do list App built with [Node.js](https://nodejs.org/en/), [Express.js](http
 #### ☞ ☞ Take a look at this [Todo App](https://polar-earth-37392.herokuapp.com/users/login) 
 - Login with dummy account: `user1@example.com` / password: `12345678` 
 
+<img height="400" src="https://github.com/DollyChen-CYC/portfolio/blob/main/src/assets/images/17-Express-TodoList.png" alt="Project Screenshot" />
+
 ## Installation and Execution
 1.  Clone the files to your computer
 ```bash
