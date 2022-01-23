@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 // connect to mongo DB
-mongoose.connect(process.env.MONGODB_URL)
+mongoose.connect(process.env.MONGODB_URI)
 const db = mongoose.connection
 
 db.on('error', () => {
